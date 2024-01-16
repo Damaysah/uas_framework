@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controller\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,19 +21,30 @@ use Illuminate\Support\Facades\Route;
 // routes/web.php
 
 
-Route::prefix('dosen')->group(function () {
-    // Route untuk halaman profil dosen
+// Route::prefix('dosen')->group(function () {
+//     // Route untuk halaman profil dosen
+//     Route::get('/profil', function () {
+//         return view('v_profil', ['message' => 'Halaman profil dosen']);
+//     });
+
+//     // Route untuk halaman data
+//     Route::get('/data', function () {
+//         return view('v_data', ['message' => 'Halaman data dosen']);
+//     });
+
+//     // Route untuk halaman data pengampu
+//     Route::get('/data_pengampu', function () {
+//         return view('v_ampu', ['message' => 'Halaman Data Mata Kuliah Yang Diampu']);
+// });
+// });
+ Route::get('/', [ProfileController::class, 'index']);
+
+Route::prefix('dosen')->group(function () {     
     Route::get('/profil', function () {
-        return view('v_profil', ['message' => 'Halaman profil dosen']);
-    });
-
-    // Route untuk halaman data
-    Route::get('/data', function () {
-        return view('v_data', ['message' => 'Halaman data dosen']);
-    });
-
-    // Route untuk halaman data pengampu
+        return view('v_profil'); 
+    })->name('profil');
     Route::get('/data_pengampu', function () {
-        return view('v_ampu', ['message' => 'Halaman Data Mata Kuliah Yang Diampu']);
-});
+        return view('v_ampu'); 
+    })->name('pengampu');
+
 });
